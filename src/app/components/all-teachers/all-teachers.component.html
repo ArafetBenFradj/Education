@@ -1,0 +1,77 @@
+<app-banner [descriptionBanner]="title" [descriptionText]="text"></app-banner>
+<section class="section">
+  <div  class="container">
+    
+      <div class="row">
+        <div class="col-lg-12">
+          <h2 class="section-title">Search Teacher</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-7 mb-4 mb-lg-0">
+            <form [formGroup]="searchTeacherForm"  class="row">
+           
+                <div class="col-12" >
+                    <input
+                      type="text"
+                      class="form-control mb-3"
+                      formControlName="speciality"
+                      placeholder="Speciality Teacher"
+                    />
+                  </div>
+                  <div
+                    class="col-sm-12"
+                    style="color: red;"
+                    *ngIf="
+                      searchTeacherForm.controls['speciality'].invalid &&
+                      (searchTeacherForm.controls['speciality'].dirty ||
+                        searchTeacherForm.controls['speciality'].touched)
+                    "
+                  >
+                    <div
+                      *ngIf="
+                        searchTeacherForm.controls['speciality'].errors.required
+                      "
+                    >
+                      Speciality  is required
+                    </div>
+                    <div
+                      *ngIf="
+                        searchTeacherForm.controls['speciality'].errors.minlength
+                      "
+                    >
+                      Speciality  should have at least 3 characters
+                    </div>
+                   
+                  </div>
+                <div class="col-12">
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                (click)="searchTeacherBySpeciality()"
+                [disabled]="searchTeacherForm.invalid"
+                  >
+                   Search
+                  </button>
+                </div>
+                <div style="margin-top: 3%;margin-left: 2%;" *ngIf="errorMessage" class="alert alert-danger">
+                  {{ errorMessage }}
+                </div>
+              </form>
+        </div>
+        
+      </div>
+      <div class="row" *ngIf="showSearchTeachers"  style="margin-top: 5%;">
+        <div  class="col-lg-4 col-sm-6 mb-5 arts law"  *ngFor="let teacher of teachersBySpeciality">
+          <app-single-teacher [teacherInfo]="teacher"></app-single-teacher>
+        </div>
+      </div>
+     <div class="row" *ngIf="showTeachers" style="margin-top: 5%;">
+      <div  class="col-lg-4 col-sm-6 mb-5 arts law"  *ngFor="let teacher of teachers">
+        <app-single-teacher [teacherInfo]="teacher"></app-single-teacher>
+      </div>
+    </div>
+      
+   
+  </div>
+</section>

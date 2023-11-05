@@ -1,0 +1,473 @@
+<app-banner [descriptionBanner]="title" [descriptionText]="text"></app-banner>
+ <section class="section bg-gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h2 class="section-title">Signup</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-7 mb-4 mb-lg-0">
+            <form [formGroup]="signupForm" (ngSubmit)="signup()" enctype="multipart/form-data" class="row">
+                <div class="col-12">
+                  <input
+                    type="text"
+                    class="form-control mb-3"
+                    formControlName="firstName"
+                    name="signupFirstName"
+                    placeholder="First Name"
+                  />
+                </div>
+                <div
+                  class="col-sm-12"
+                  style="color: red;"
+                  *ngIf="
+                    signupForm.controls['firstName'].invalid &&
+                    (signupForm.controls['firstName'].dirty ||
+                      signupForm.controls['firstName'].touched)
+                  "
+                >
+                  <div
+                    *ngIf="
+                      signupForm.controls['firstName'].errors.required
+                    "
+                  >
+                    First Name  is required
+                  </div>
+                  <div
+                    *ngIf="
+                      signupForm.controls['firstName'].errors
+                        .minlength
+                    "
+                  >
+                    First Name  should have at least 3 carac
+                  </div>
+                </div>
+                <div class="col-12">
+                  <input
+                    type="text"
+                    class="form-control mb-3"
+                    formControlName="lastName"
+                    name="signupLastName"
+                    placeholder="Last Name"
+                  />
+                </div>
+                <div
+                  class="col-sm-12"
+                  style="color: red;"
+                  *ngIf="
+                    signupForm.controls['lastName'].invalid &&
+                    (signupForm.controls['lastName'].dirty ||
+                      signupForm.controls['lastName'].touched)
+                  "
+                >
+                  <div
+                    *ngIf="
+                      signupForm.controls['lastName'].errors.required
+                    "
+                  >
+                    Last Name  is required
+                  </div>
+                  <div
+                    *ngIf="
+                      signupForm.controls['lastName'].errors.minlength
+                    "
+                  >
+                    Last Name  should have at least 4 carac
+                  </div>
+                </div>
+    
+                <div class="col-12">
+                  <input
+                    type="text"
+                    class="form-control mb-3"
+                    formControlName="address"
+                    name="signupAdress"
+                    placeholder="Your Address"
+                  />
+                </div>
+                <div
+                  class="col-sm-12"
+                  style="color: red;"
+                  *ngIf="
+                    signupForm.controls['address'].invalid &&
+                    (signupForm.controls['address'].dirty ||
+                      signupForm.controls['address'].touched)
+                  "
+                >
+                  <div
+                    *ngIf="
+                      signupForm.controls['address'].errors.required
+                    "
+                  >
+                    Address is required
+                  </div>
+                  <div
+                    *ngIf="
+                      signupForm.controls['address'].errors.minlength
+                    "
+                  >
+                    Address should have at least 5 characters
+                  </div>
+                 
+                </div>
+                <div class="col-12">
+                    <input
+                      type="email"
+                      class="form-control mb-3"
+                      formControlName="email"
+                      name="signupEmail"
+                      placeholder="Your Email"
+                    />
+                    <span style="color: red;">{{errorEmail}}</span>
+                  </div>
+                  <div
+                  class="col-sm-12"
+                  style="color: red;"
+                  *ngIf="
+                    signupForm.controls['email'].invalid &&
+                    (signupForm.controls['email'].dirty ||
+                      signupForm.controls['email'].touched)
+                  "
+                >
+                  <div
+                    *ngIf="
+                      signupForm.controls['email'].errors.required
+                    "
+                  >
+                    Email is required
+                  </div>
+                  <div
+                    *ngIf="
+                      signupForm.controls['email'].errors.email
+                    "
+                  >
+                  Please enter a valid email address
+                  </div>
+                
+                </div>
+                <div class="col-12" *ngIf="path == '/signupTeacher'">
+                    <input
+                      type="text"
+                      class="form-control mb-3"
+                      formControlName="speciality"
+                      name="signupSpeciality"
+                      placeholder="Your Speciality"
+                    />
+                  </div>
+                  <div
+                    class="col-sm-12"
+                    style="color: red;"
+                    *ngIf="
+                      signupForm.controls['speciality'].invalid &&
+                      (signupForm.controls['speciality'].dirty ||
+                        signupForm.controls['speciality'].touched)
+                    "
+                  >
+                    <div
+                      *ngIf="
+                        signupForm.controls['speciality'].errors.required
+                      "
+                    >
+                      Speciality  is required
+                    </div>
+                    <div
+                      *ngIf="
+                        signupForm.controls['speciality'].errors.minlength
+                      "
+                    >
+                      Speciality  should have at least 3 characters
+                    </div>
+                   
+                  </div>
+                <div class="col-12">
+                  <input
+                    type="text"
+                    class="form-control mb-3"
+                    formControlName="tel"
+                    name="signupPhone"
+                    placeholder="Phone"
+                  />
+                </div>
+                <div
+                  class="col-sm-12"
+                  style="color: red;"
+                  *ngIf="
+                    signupForm.controls['tel'].invalid &&
+                    (signupForm.controls['tel'].dirty ||
+                      signupForm.controls['tel'].touched)
+                  "
+                >
+                  <div
+                    *ngIf="signupForm.controls['tel'].errors.required"
+                  >
+                    Phone Number is required
+                  </div>
+                  <div
+                    *ngIf="signupForm.controls['tel'].errors.pattern"
+                  >
+                    Phone Number should have at least 8 number
+                  </div>
+                </div>
+                <span style="color: red;">{{errorTel}}</span>
+                <div *ngIf="path == '/signupParent'">
+                    <div class="col-12">
+                        <label for="numberOfChildren">Number of Children:</label>
+                        <div class="col-12">
+                          <input
+                            type="number"
+                            class="form-control mb-3"
+                            formControlName="numberOfChildren"
+                            name="signupNumberOfChildren"
+                            placeholder="Number of Children"
+                          />
+                        </div>
+                        <div
+                          class="col-sm-12"
+                          style="color: red"
+                          *ngIf="
+                            signupForm.controls['numberOfChildren'].invalid &&
+                            (signupForm.controls['numberOfChildren'].dirty ||
+                              signupForm.controls['numberOfChildren'].touched)
+                          "
+                        >
+                          <div
+                            *ngIf="
+                              signupForm.controls['numberOfChildren'].errors
+                                .required
+                            "
+                          >
+                            Number Of Children is required
+                          </div>
+                          <div
+                            *ngIf="
+                              signupForm.controls['numberOfChildren'].errors.min
+                            "
+                          >
+                            Number Of Children Should be > 0
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="addChildrenFields()"
+                          >
+                            Verif Children
+                          </button>
+                        </div>
+                      </div>
+          
+                      <div class="col-12" formArrayName="childrenArray" style="margin-top: 2%;">
+                        <div
+                          *ngFor="
+                            let child of signupForm.get('childrenArray').controls;
+                            let i = index
+                          "
+                        >
+                          <div [formGroupName]="i">
+                            <div class="col-12">
+                              <input
+                                type="text"
+                                class="form-control mb-3"
+                                formControlName="childFirstName"
+                                [placeholder]="'Child ' + (i + 1) + ' First Name'"
+                              />
+                            </div>
+                            <div
+                              class="col-sm-12"
+                              style="color: red"
+                              *ngIf="
+                                child.controls['childFirstName'].invalid &&
+                                (child.controls['childFirstName'].dirty ||
+                                  child.controls['childFirstName'].touched)
+                              "
+                            >
+                              <div
+                                *ngIf="child.controls['childFirstName'].errors.required"
+                              >
+                                First Name Child is required
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <input
+                                type="text"
+                                class="form-control mb-3"
+                                formControlName="childLastName"
+                                [placeholder]="'Child ' + (i + 1) + ' Last Name'"
+                              />
+                            </div>
+                            <div
+                              class="col-sm-12"
+                              style="color: red"
+                              *ngIf="
+                                child.controls['childLastName'].invalid &&
+                                (child.controls['childLastName'].dirty ||
+                                  child.controls['childLastName'].touched)
+                              "
+                            >
+                              <div
+                                *ngIf="child.controls['childLastName'].errors.required"
+                              >
+                                Last Name Child is required
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <input
+                                type="text"
+                                class="form-control mb-3"
+                                formControlName="childPhone"
+                                [placeholder]="'Child ' + (i + 1) + ' Phone Number'"
+                              />
+                            </div>
+                            <div
+                              class="col-sm-12"
+                              style="color: red"
+                              *ngIf="
+                                child.controls['childPhone'].invalid &&
+                                (child.controls['childPhone'].dirty ||
+                                  child.controls['childPhone'].touched)
+                              "
+                            >
+                              <div *ngIf="child.controls['childPhone'].errors.required">
+                                Child Phone Number is required
+                              </div>
+                              <div *ngIf="child.controls['childPhone'].errors.pattern">
+                                Child Phone Number should have at least 8 number
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <span style="color: red;">{{errorParentChilds}}</span>
+                </div>
+                <div class="col-12">
+                  <input
+                    type="password"
+                    class="form-control mb-3"
+                    formControlName="pwd"
+                    name="signupPassword"
+                    placeholder="Password"
+                  />
+                </div>
+                <div
+                  class="col-sm-12"
+                  style="color: red;"
+                  *ngIf="
+                    signupForm.controls['pwd'].invalid &&
+                    (signupForm.controls['pwd'].dirty ||
+                      signupForm.controls['pwd'].touched)
+                  "
+                >
+                  <div
+                    *ngIf="signupForm.controls['pwd'].errors.required"
+                  >
+                    Password is required
+                  </div>
+                  <div
+                    *ngIf="
+                      signupForm.controls['pwd'].errors.minlength
+                    "
+                  >
+                    Password should have at least 5 characters
+                  </div>
+                 
+                  <div
+                    *ngIf="
+                      signupForm.controls['pwd'].hasError('pattern')
+                    "
+                  >
+                    Password must contain at least one digit, one uppercase letter,
+                    and one special character.
+                  </div>
+                </div>
+                <div class="col-12">
+                  <input
+                    type="password"
+                    class="form-control mb-3"
+                    formControlName="confirmPwd"
+                    name="signupConfirmPassword"
+                    placeholder="Re-Type Password"
+                  />
+                </div>
+                <div
+                  class="col-sm-12"
+                  style="color: red;"
+                  *ngIf="
+                    signupForm.controls['confirmPwd'].invalid &&
+                    (signupForm.controls['confirmPwd'].dirty ||
+                      signupForm.controls['confirmPwd'].touched)
+                  "
+                >
+                  <div
+                    *ngIf="
+                      signupForm.controls['confirmPwd'].errors
+                        .mustMatch
+                    "
+                  >
+                    Confirm Pwd must match PWD
+                  </div>
+                </div>
+                <span class="text-center" style="color: red;">{{allErrorPhoneEmail}}</span>
+                 <div class="col-12" *ngIf="path == '/signupTeacher' || path == '/signupStudent'">
+                  <div  style="display: none;">
+                    <input
+                      type="file"
+                      class="form-control mb-3"
+                      name="img"
+                      #imgFilePicker
+                      (change)="onFileSelected($event, 'img')"
+    
+                    />
+                  </div>
+                  <div class="text-center">
+                    <div>
+                      <button type="button" (click)="imgFilePicker.click()" class="btn btn-success">Select Your Photo</button>
+                    </div>
+                   <div class="mt-4 mb-4"> 
+                    <img [src]="photoImagePreview" width="200px" *ngIf="photoImagePreview">
+                   </div>
+                   <span style="color: red;">{{errorImg}}</span>
+                   <span style="color: red;">{{errorImgStudent}}</span>
+                  </div>
+                  
+                  
+                </div>
+                <div class="col-12" *ngIf="path == '/signupTeacher' ">
+                  <div  style="display: none;">
+                    <input
+                      type="file"
+                      name="img"
+                      class="form-control mb-3"
+                      #cvFilePicker
+                      (change)="onFileSelected($event, 'cv')"
+                    />
+                  </div>
+                  <div class="text-center" >
+                    <div>
+                      <button  type="button" (click)="cvFilePicker.click()" class="btn btn-warning">upload your CV</button>
+                    </div>
+                   <div class="mt-4 mb-4"> 
+                    <img [src]=" cvImagePreview" width="200px"  *ngIf="cvImagePreview">
+                   </div>
+                   <span style="color: red;">{{errorCv}}</span>
+                   <span class="text-center" style="color: red;">{{allError}}</span>
+                  </div>
+                </div> 
+                
+                
+                <div class="col-12">
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                
+                  >
+                    Signup
+                  </button>
+                </div>
+              </form>
+        </div>
+        
+      </div>
+    </div>
+  </section>

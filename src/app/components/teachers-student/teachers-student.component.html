@@ -1,0 +1,15 @@
+
+<app-banner [descriptionBanner]="title" [descriptionText]="text"></app-banner>
+<section class="section">
+  <div  class="container">
+   
+    <div class="row" >
+      
+      <div  class="col-lg-4 col-sm-6 mb-5 arts law" *ngFor="let teacher of teachersByStudent">
+        <app-single-teacher [teacherInfo]="teacher"></app-single-teacher>
+      </div>
+ 
+    </div>
+  </div>
+</section>
+  

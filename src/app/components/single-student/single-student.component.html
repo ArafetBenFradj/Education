@@ -1,0 +1,83 @@
+
+<div class="card rounded-0 hover-shadow border-top-0 border-left-0 border-right-0">
+    <img class="card-img-top rounded-0" [src]="studentDetails.img" alt="scholarship-thumb">
+    <div class="card-body">
+      <p class="mb-1">Student</p>
+      <h4 class="card-title mb-3">{{studentDetails.firstName}} {{studentDetails.lastName}}</h4>
+     
+      <ul class="list-unstyled">
+        <li class="mb-3"><a class="text-color" href="mailto:johndoe@email.com"><i class="ti-email mr-2"></i>{{studentDetails.email}}</a></li>
+        <li class="mb-3"><a class="text-color" href="callto:+120345876"><i class="ti-mobile mr-2"></i>{{studentDetails.tel}}</a></li>
+        <li class="mb-3"><a class="text-color" href="#"><i class="ti-location-pin mr-2"></i>{{studentDetails.address}}</a></li>
+      </ul>
+      <a  *ngIf="path !='/studentsTeacher' && allowGiveEvaluation && allowGiveEvaluationCourse " class="btn btn-primary btn-sm"  style="color: black;"  (click)="onValidateClickEvaluation()" >Give An Evaluation</a>
+      <a  *ngIf="path =='/studentsTeacher' && allowGiveGlobalEvaluation && allowGiveGlobalEvaluationTeacher" class="btn btn-primary btn-sm" style="color: black;margin-top: 3%;" (click)="onValidateClickGlobalEvaluation()" >Give An Global Evaluation</a>
+      <a  *ngIf="path !='/studentsTeacher' && allowGiveNote && allowGiveNoteCourse" class="btn btn-primary btn-sm" style="color: black;margin-top: 3%;" (click)="onValidateClickNote()"> Give a Note</a>
+    </div>
+    <div style="margin-top: 10%;" class="login" *ngIf="showEvaluationInput">
+      <form  class="row" #formEvaluation="ngForm" >
+          <div class="col-12">
+              <input type="text" class="form-control mb-3"  [ngModelOptions]="{standalone: 
+                  true}"  [(ngModel)]="evaluationForm.evaluation" #evaluation="ngModel" [ngClass]="{ 'is-invalid': formEvaluation.submitted && evaluation.invalid }" minlength="3" required placeholder="Your Evaluation ">
+                  <div *ngIf="formEvaluation.submitted && evaluation.invalid" class="invalid-feedback">
+                      <p *ngIf="evaluation.errors.required">Evaluation Is Required</p>
+                  </div>
+                  <div *ngIf="formEvaluation.submitted && evaluation.invalid" class="invalid-feedback">
+                      <p *ngIf="evaluation.errors.minlength">Evaluation Should Be Have At Least 3 caractéres</p>
+                  </div>
+          </div>  
+          <div class="col-12">
+              <button type="submit" class="btn btn-primary" (click)="addEvaluationToCourse(studentDetails._id);addEvaluationToTeacher(studentDetails._id);addEvaluationToStudent(studentDetails._id)">Submit</button>
+          </div>
+          <div style="margin-top: 3%;margin-left: 2%;" *ngIf="successMessage" class="alert alert-success">
+            {{ successMessage }}
+          </div>
+      </form>
+  </div>
+  <div style="margin-top: 10%;" class="login" *ngIf="showNoteInput">
+    <form class="row" #formNote="ngForm" (ngSubmit)="formNote.form.valid && addNoteToCourse(studentDetails._id);addNoteToStudent(studentDetails._id);addNoteToTeacher(studentDetails._id)">
+      <div class="col-12">
+        <input type="number" class="form-control mb-3" [ngModelOptions]="{ standalone: true }" [(ngModel)]="noteForm.note" #note="ngModel" [ngClass]="{ 'is-invalid': formNote.submitted && note.invalid }"  required placeholder="Your Note">
+        <div *ngIf="formNote.submitted && note.invalid" class="invalid-feedback">
+          <p *ngIf="note.errors.required">Note Is Required</p>
+        </div>
+      </div>  
+      <div class="col-12">
+        <input type="text" class="form-control mb-3" [ngModelOptions]="{ standalone: true }" [(ngModel)]="noteForm.mention" #mention="ngModel" [ngClass]="{ 'is-invalid': formNote.submitted && mention.invalid }"  required minlength="3" placeholder="Your Mention">
+        <div *ngIf="formNote.submitted && mention.invalid" class="invalid-feedback">
+          <p *ngIf="mention.errors.required">Mention Is Required</p>
+      </div>
+      <div *ngIf="formNote.submitted && mention.invalid" class="invalid-feedback">
+          <p *ngIf="mention.errors.minlength">Mention Should Be Have At Least 3 caractéres</p>
+      </div>
+      </div> 
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="formNote.form.invalid">Submit</button>
+      </div>
+      <div style="margin-top: 3%;margin-left: 2%;" *ngIf="successMessageNote" class="alert alert-success">
+        {{ successMessageNote }}
+      </div>
+    </form>
+  </div>
+  
+  <div style="margin-top: 10%;" class="login" *ngIf="showGlobalEvaluationInput">
+    <form  class="row" #formGlobalEvaluation="ngForm" >
+        <div class="col-12">
+            <input type="text" class="form-control mb-3"  [ngModelOptions]="{standalone: 
+                true}"  [(ngModel)]="globalEvaluationForm.evaluation" #evaluation="ngModel" [ngClass]="{ 'is-invalid': formGlobalEvaluation.submitted && evaluation.invalid }" minlength="5" required placeholder="Your Global Evaluation ">
+                <div *ngIf="formGlobalEvaluation.submitted && evaluation.invalid" class="invalid-feedback">
+                    <p *ngIf="evaluation.errors.required">Global Evaluation Is Required</p>
+                </div>
+                <div *ngIf="formGlobalEvaluation.submitted && evaluation.invalid" class="invalid-feedback">
+                    <p *ngIf="evaluation.errors.minlength">Global Evaluation Should Be Have At Least 5 caractéres</p>
+                </div>
+        </div>  
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary" (click)="addGlobalEvaluationToTeacher(studentDetails._id);addGlobalEvaluationToStudent(studentDetails._id)">Submit</button>
+        </div>
+        <div style="margin-top: 3%;margin-left: 2%;" *ngIf="successMessageGlobalEvaluation" class="alert alert-success">
+          {{ successMessageGlobalEvaluation }}
+        </div>
+    </form>
+</div>
+</div>

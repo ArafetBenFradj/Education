@@ -1,0 +1,46 @@
+<table class="table"> 
+    <thead>
+      <tr>
+       
+        <th scope="col">Student</th>
+        <th scope="col">Evaluation</th>
+        <th scope="col">Actions</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-warning" *ngFor="let evaluation of evaluationsTab">
+        
+        
+        <td>{{evaluation.student.firstName}} {{evaluation.student.lastName}}</td>
+        <td>{{evaluation.globalEvaluation.evaluation}}</td>
+       
+        <td> 
+            <button  type="button" class="btnCoursesTab btn-success" (click)="onValidateClickGlobalEvaluation();getGlobalEvaluationById(evaluation.globalEvaluation._id)">Edit</button>
+        </td>
+        
+      </tr>
+     <tr>
+      <div style="margin-top: 10%;" class="login" *ngIf="showGlobalEvaluationInput">
+        <form  class="row" #formGlobalEvaluation="ngForm" >
+            <div class="col-12">
+                <input type="text" class="form-control mb-3"  [ngModelOptions]="{standalone: 
+                    true}"  [(ngModel)]="globalEvaluationForm.evaluation" #evaluation="ngModel" [ngClass]="{ 'is-invalid': formGlobalEvaluation.submitted && evaluation.invalid }" minlength="5" required placeholder="Your Global Evaluation ">
+                    <div *ngIf="formGlobalEvaluation.submitted && evaluation.invalid" class="invalid-feedback">
+                        <p *ngIf="evaluation.errors.required">Global Evaluation Is Required</p>
+                    </div>
+                    <div *ngIf="formGlobalEvaluation.submitted && evaluation.invalid" class="invalid-feedback">
+                        <p *ngIf="evaluation.errors.minlength">Global Evaluation Should Be Have At Least 5 caractéres</p>
+                    </div>
+            </div>  
+            <div class="col-12">
+                <button type="submit" class="btn btn-success" (click)="editGlobalEvaluation()">Edit</button>
+            </div>
+            <div style="margin-top: 3%;margin-left: 2%;" *ngIf="successMessage" class="alert alert-success">
+              {{ successMessage }}
+            </div>
+        </form>
+    </div>
+     </tr>
+    </tbody>
+  </table>

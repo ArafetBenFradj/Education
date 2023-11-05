@@ -1,0 +1,18 @@
+
+<app-banner [descriptionBanner]="title" [descriptionText]="text"></app-banner>
+<section class="section-sm">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-sm-6 mb-5" *ngFor="let course of pageOfItems">
+         <app-single-course [courseDetails]="course" (newCourses)="updateCourses($event)"></app-single-course>
+        </div>
+       
+      </div>
+      
+    </div>
+    <div class="card-footer pb-0 pt-3 " style="padding-left: 35%;">
+      <jw-pagination style="background-color: rgb(240, 188, 93);"
+     [items]="courses" [pageSize]="2" (changePage)="onChangePage($event)" >
+    </jw-pagination>
+     </div>
+  </section>

@@ -1,0 +1,36 @@
+<app-banner [descriptionBanner]="title" [descriptionText]="text"></app-banner>
+<section class="section bg-gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h2 class="section-title">Login</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-7 mb-4 mb-lg-0">
+          <form  #loginForm="ngForm" (ngSubmit)="login()">
+            <input type="text" class="form-control mb-3"  [(ngModel)]="userLogin.tel"  [ngModelOptions]="{standalone: true}" #tel="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && (tel.invalid || userLogin.tel.length !== 8)}" required name="phoneUser" placeholder="Your Phone Number">
+            <div *ngIf="loginForm.submitted && tel.invalid " class="invalid-feedback" >
+                <p *ngIf="tel.errors.required">Phone Number is required</p>
+               
+            </div>
+            <div *ngIf="loginForm.submitted " class="invalid-feedback" >
+                <p *ngIf=" userLogin.tel.length !== 8">Phone Number Should be at least 8 Number</p>
+               
+            </div>
+            <input type="password" class="form-control mb-3" [(ngModel)]="userLogin.pwd" [ngModelOptions]="{standalone: true}" #pwd="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && pwd.invalid }" required name="passwordUser" placeholder="Your Password">
+            <div *ngIf="loginForm.submitted && pwd.invalid" class="invalid-feedback" >
+                <p *ngIf="pwd.errors.required">Pwd is required</p>
+            </div>
+           <span style="color: red;" class="mb-3">{{errMsg}}</span>
+           <div>
+            <button type="submit" value="send" class="btn btn-primary  btn-block">Login</button>
+           </div>
+           
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+

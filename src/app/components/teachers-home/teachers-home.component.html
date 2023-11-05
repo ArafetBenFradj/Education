@@ -1,0 +1,20 @@
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex align-items-center section-title justify-content-between">
+          <h2 class="mb-0 text-nowrap mr-3">Our Teachers</h2>
+          
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+     
+      <div class="col-lg-4 col-sm-6 mb-5 " *ngFor="let teacher of teachersTab">
+      <app-single-teacher [teacherInfo]="teacher"></app-single-teacher>
+      </div>
+
+      
+    </div>
+  </div>
+</section>

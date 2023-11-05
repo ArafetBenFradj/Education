@@ -1,0 +1,40 @@
+<div class="card border-0 rounded-0 hover-shadow">
+    <img
+      class="card-img-top rounded-0"
+      [src]="teacherInfo.img"
+      alt="teacher"
+    />
+   
+    <div class="card-body">
+      <a >
+        <h4 class="card-title">{{teacherInfo.firstName}} {{teacherInfo.lastName}}</h4>
+      </a>
+      <p>Teacher</p>
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <a class="text-color" href="#"><i class="ti-facebook"></i></a>
+        </li>
+        <li class="list-inline-item">
+          <a class="text-color" href="#"
+            ><i class="ti-twitter-alt"></i
+          ></a>
+        </li>
+        <li class="list-inline-item">
+          <a class="text-color" href="#"><i class="ti-google"></i></a>
+        </li>
+        <li class="list-inline-item">
+          <a class="text-color" href="#"><i class="ti-linkedin"></i></a>
+        </li>
+      </ul>
+      <a  *ngIf="user?.role=='student' && path=='/teachersStudent'" class="btn btn-primary btn-sm"  style="color: black;margin-top: 5%;"  (click)="showEvaluationStudentFromTeacher(teacherInfo._id);onValidateClickEvaluation()">Show Review</a>
+      <a  *ngIf="user?.role=='student' || user?.role=='parent' || !user" class="btn btn-primary btn-sm"  style="color: black;margin-left: 3%;margin-top: 3%;margin-right: 1%;" (click)="goToDisplayInfo(teacherInfo._id)">Display </a>
+    </div>
+    <span style="color: red;">{{errorMsgEvaluation}}</span>
+    <div class="card-body" *ngIf="showEvaluationInput ">
+      <h3 class="mb-4">Your Evaluation</h3>
+      <ul class="list-styled mb-5">
+        <li> {{evaluationValue}} </li>
+      </ul>
+
+    </div>
+  </div>

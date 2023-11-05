@@ -1,0 +1,35 @@
+<div class="modal fade" id="displayStudentAdmin" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content rounded-0 border-0 p-4">
+            <div class="modal-header border-0">
+                <h3>Student Information</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <section class="section">
+                    <div class="container">
+                      <div class="row">
+                <div class="col-md-5 mb-5">
+                    <img class="img-fluid w-100" [src]="student.img" alt="student">
+                  </div>
+                  <div class="col-md-6 mb-5">
+                    <h3>{{student.firstName}} {{student.lastName}}</h3>
+                    <h6 class="text-color">{{student.role}}</h6>
+                    
+                    <h3 >Contact Info</h3>
+                    <ul class="list-unstyled">
+                      <li class="mb-3"><a class="text-color" href="mailto:johndoe@email.com"><i class="ti-email mr-2"></i>{{student.email}}</a></li>
+                      <li class="mb-3"><a class="text-color" href="callto:+120345876"><i class="ti-mobile mr-2"></i>{{student.tel}}</a></li>
+                      <li class="mb-3"><a class="text-color" href="#"><i class="ti-location-pin mr-2"></i>{{student.address}}</a></li>
+                    </ul>
+                    
+                  </div>
+                </div>
+                </div>
+            </section>
+            </div>
+        </div>
+    </div>
+</div>

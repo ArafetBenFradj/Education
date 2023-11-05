@@ -1,0 +1,21 @@
+
+.exellent{
+    color:rgb(4, 57, 4);
+    font-size: 40px;
+}
+.trésBien{
+    color:rgb(110, 244, 110);
+    font-size: 35px;
+}
+.bien{
+    color : orange;
+    font-size: 30px;
+}
+.passable{
+    color : blue;
+    font-size: 25px;
+}
+.faible{
+    color :red;
+    font-size: 20px;
+}

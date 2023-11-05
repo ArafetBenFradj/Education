@@ -1,0 +1,55 @@
+
+
+<div class="card p-0 border-primary rounded-0 hover-shadow">
+    <img
+      class="card-img-top rounded-0"
+      [src]="courseDetails.imgCourse"
+      alt="course thumb"
+    />
+    <div class="card-body">
+      <ul class="list-inline mb-2">
+        <li class="list-inline-item">
+          <i class="ti-calendar mr-1 text-color"></i>Month Duration : {{courseDetails.monthDuree}}
+        </li>
+        <li class="list-inline-item">
+          <i class="ti-calendar mr-1 text-color"></i>Hours Duration : {{courseDetails.HourDuree}}
+        </li>
+        <li class="list-inline-item">
+          <a class="text-color" href="#">Price : {{courseDetails.price}}DT</a>
+        </li>
+      </ul>
+      <a >
+        <h4 class="card-title">{{courseDetails.name}}</h4>
+      </a>
+      <p class="card-text mb-4">
+       {{courseDetails.description}}
+      </p>
+      <a *ngIf="user?.role=='teacher'" class="btn btn-success btn-sm" style="color: black;" (click)="goToDisplayEdit(courseDetails._id)">Edit</a>
+      <a  *ngIf="user?.role=='teacher'" class="btn btn-danger btn-sm"  style="color: black;margin-left: 3%;" (click)="deleteCourse(courseDetails._id)">Delete</a>
+      <a  *ngIf="user?.role=='teacher'" class="btn btn-primary btn-sm"  style="color: black;margin-top: 3%;" data-target="#listStudentsTeacher" data-toggle="modal" (click)="goToDisplayStudentsFromCourse(courseDetails._id)">List Of Students</a>
+      <a  *ngIf="user?.role=='student' && path =='/CoursesStudent'" class="btn btn-primary btn-sm"  style="color: black;margin-top: 3%;"  (click)="showEvaluationStudentFromCourse(courseDetails._id);onValidateClickEvaluation()">Show Review</a>
+      <a  *ngIf="user?.role=='student' && path =='/CoursesStudent'" class="btn btn-primary btn-sm"  style="color: black;margin-left: 3%;margin-top: 3%;margin-right: 1%;" (click)="showNoteStudentFromCourse(courseDetails._id);onValidateClickNote()">Show Note </a>
+      <a  *ngIf="user?.role=='student' || user?.role=='parent' || !user" class="btn btn-primary btn-sm"  style="color: black;margin-left: 3%;margin-top: 3%;margin-right: 1%;" (click)="goToDisplayCourse(courseDetails._id)">Display </a>
+    </div>
+    <span style="color: red;">{{errorMsgEvaluation}}</span>
+    <div class="card-body" *ngIf="showEvaluationInput ">
+      <h3 class="mb-4">Your Evaluation</h3>
+      <ul class="list-styled mb-5">
+        <li> <h6 class="text-color">Your Teacher : </h6>{{teacherFirstName}} {{teacherLastName}}</li>
+        <li> <h6 class="text-color">Your Evaluation : </h6>{{evaluationValue}}</li>
+        
+      </ul>
+
+    </div>
+     <span style="color: red;">{{errorMsgNote}}</span>
+    <div class="card-body" *ngIf="showNoteInput">
+      <h3 class="mb-4">Your Note</h3>
+      <ul class="list-styled mb-5">
+        <li> <h6 class="text-color">Your Teacher : </h6>{{teacherFirstName}} {{teacherLastName}}</li>
+        <li> <h6 class="text-color">Your Note : </h6>{{noteValue}}</li>
+        <li> <h6 class="text-color">Your Mention : </h6>{{mentionValue}}</li>
+      </ul>
+
+    </div>
+  </div>
+ 

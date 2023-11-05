@@ -1,0 +1,50 @@
+<div  class="modal fade" id="listOfTeacher" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content rounded-0 border-0 p-4">
+            <div class="modal-header border-0">
+                <h3>List Of Teachers</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <h3 class="mb-4">Choose the teacher who will assign a student</h3>
+                    <div class="col-12">
+                        <select name="idTeacher" class="form-control mb-3"  (change)="selectTeacherId($event)">
+                            <option value="">List Of Teachers</option>
+                            <option  *ngFor="let teacher of teachers" style="color: black;"  [value]="teacher._id" > {{teacher.firstName}} {{teacher.lastName}} ({{teacher.speciality}})</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary"  (click)="affectStudentInTeacher(student._id);affectTeacherInstudent(student,student._id);onValidateClick()">Validate Teacher</button>
+                        
+                    </div>
+                    <div style="margin-top: 3%;margin-left: 2%;" *ngIf="errorTeacher" class="alert alert-danger">
+                        {{ errorTeacher }}
+                      </div>
+                      <div style="margin-top: 3%;margin-left: 2%;" *ngIf="successTeacher" class="alert alert-success">
+                        {{ successTeacher}}
+                      </div>
+                    
+                    <div style="margin-top: 5%;" *ngIf="showCoursesList">
+                        <strong class="mb-4 d-block"><i>Here List Of Course For This Teacher</i></strong>
+                        <p class="mb-1">Choose the Course who will assign a student</p>
+                        <div class="col-12">
+                            <select  class="form-control mb-3" name="idCourse" (change)="selectCourseId($event)" >
+                                <option value="">List Of Courses</option>
+                                <option *ngFor="let course of courses" style="color: black;" [value]="course._id" >{{course.name}}</option>
+                              </select>
+                              <button type="submit" class="btn btn-primary"  (click)="affectCourseInStudent(student,student._id);affectStudentInCourse(student._id)">Validate assignment</button>    
+                        </div>
+                        <div style="margin-top: 3%;margin-left: 2%;" *ngIf="errorCourse" class="alert alert-danger">
+                            {{ errorCourse }}
+                          </div>
+                          <div style="margin-top: 3%;margin-left: 2%;" *ngIf="successCourse" class="alert alert-success">
+                            {{ successCourse}}
+                          </div>
+                    </div>
+                   
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

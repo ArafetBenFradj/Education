@@ -1,0 +1,48 @@
+<app-edit-student [titleStudent]="title" [student]="studentById"  [photoImagePreview]="photoImagePreviewStudent"></app-edit-student>
+<app-display-student-admin [student]="studentById"></app-display-student-admin>
+<app-affect-student [teachers]="teachersAdmin" [student]="studentAffectTeacher" (newStudents)="updatestudents($event)" [showModal]="showAffectStudentModal"></app-affect-student>
+<table class="table" > 
+  
+    <thead>
+      <tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Image</th>
+        <th scope="col">List Of Teachers</th>
+        <th scope="col">List Of Courses</th>
+        <th scope="col">Actions</th>
+        <th scope="col">student assignment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-warning"  *ngFor="let student of students">
+        
+        <td>{{student.firstName}}</td>
+        <td>{{student.lastName}}</td>
+        <td>{{student.address}}</td>
+        <td>{{student.email}}</td>
+        <td>{{student.tel}}</td>
+        <td><img [src]="student.img"  width="50px"></td>
+        <td>
+          <div *ngFor="let teacher of student.teachers">
+            <p>{{teacher}}</p>
+          </div>
+        </td>
+        <td>
+          <div *ngFor="let course of student.courses">
+            <p>{{course}}</p>
+          </div>
+        </td>
+        <td> 
+          <div>Edit :          <button  type="button" class="btnTeachersTab btn-success"   data-target="#editStudentModal" data-toggle="modal"  (click)="getStudentById(student._id)"  style="margin-left: 49px;margin-top: 3%;" ><i class="fa fa-pen-to-square"></i></button></div>
+          <div>Display :       <button  type="button" class="btnTeachersTab btn-warning" data-target="#displayStudentAdmin" data-toggle="modal"  (click)="getStudentById(student._id)" style="margin-left: 20px;margin-top: 3%;"><i class="fa-solid fa-display"></i></button></div>
+          <div>Delete :       <button  type="button" class="btnTeachersTab btn-danger" (click)="deleteStudent(student._id)" style="margin-left: 28px;margin-top: 3%;"><i class="fa fa-trash"></i></button></div>
+        </td>
+        <td> <button type="button" class="btnTeachersTab btn-success" data-target="#listOfTeacher" data-toggle="modal" (click)="getAllTeachers(student._id);openAffectStudentModal()"  >List Of Teachers</button></td>
+      </tr>
+     
+    </tbody>
+  </table>

@@ -1,0 +1,14 @@
+.btnTeachersTab {
+    font-size: 10px;
+    font-family: "Poppins", sans-serif;
+    text-transform: capitalize;
+    padding: 8px 25px;
+    border-radius: 5%;
+    font-weight: 500;
+    border: 0;
+    position: relative;
+    z-index: 1;
+    transition: .2s ease;
+    overflow: hidden;
+   
+  }

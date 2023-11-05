@@ -1,0 +1,58 @@
+<table class="table"> 
+    <thead>
+      <tr>
+        <th scope="col">Course</th>
+        <th scope="col">Student</th>
+        <th scope="col">Note</th>
+        <th scope="col">Mention</th>
+        <th scope="col">Actions</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-warning" *ngFor="let note of notesTab">
+        
+        <td>{{note.course.name}}</td>
+        <td>{{note.student.firstName}} {{note.student.lastName}}</td>
+        <td [ngStyle]="{'color' : noteColor(note.note.note)[0] }">{{note.note.note}} </td>
+        <td [ngClass]="{
+          'trésBien' : note.note.mention=='trés bien' ,
+          'exellent' : note.note.mention=='exellent' ,
+          'bien' :note.note.mention=='bien' ,
+          'passable' :note.note.mention=='passable' ,
+          'faible' :note.note.mention=='faible' 
+        }">{{note.note.mention}} </td>
+        <td> 
+            <button  type="button" class="btnCoursesTab btn-success" (click)="onValidateClickNote();getNoteById(note.note._id)">Edit</button>
+        </td>
+        
+      </tr>
+     
+    </tbody>
+    <div style="margin-top: 10%;" class="login" *ngIf="showNoteInput">
+      <form class="row" #formNote="ngForm" (ngSubmit)="formNote.form.valid && editEvaluation()">
+        <div class="col-12">
+          <input type="number" class="form-control mb-3" [ngModelOptions]="{ standalone: true }" [(ngModel)]="noteForm.note" #note="ngModel" [ngClass]="{ 'is-invalid': formNote.submitted && note.invalid }"  required placeholder="Your New Note">
+          <div *ngIf="formNote.submitted && note.invalid" class="invalid-feedback">
+            <p *ngIf="note.errors.required">Note Is Required</p>
+          </div>
+        </div> 
+        <div class="col-12">
+          <input type="text" class="form-control mb-3" [ngModelOptions]="{ standalone: true }" [(ngModel)]="noteForm.mention" #mention="ngModel" [ngClass]="{ 'is-invalid': formNote.submitted && mention.invalid }"  required minlength="3" placeholder="Your Mention">
+          <div *ngIf="formNote.submitted && mention.invalid" class="invalid-feedback">
+            <p *ngIf="mention.errors.required">Mention Is Required</p>
+        </div>
+        <div *ngIf="formNote.submitted && mention.invalid" class="invalid-feedback">
+            <p *ngIf="mention.errors.minlength">Mention Should Be Have At Least 3 caractéres</p>
+        </div>
+        </div>  
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary btn-block" [disabled]="formNote.form.invalid">Edit</button>
+        </div>
+        <div style="margin-top: 3%;margin-left: 2%;" *ngIf="successMessage" class="alert alert-success">
+          {{ successMessage }}
+        </div>
+      </form>
+    </div>
+  </table>
+

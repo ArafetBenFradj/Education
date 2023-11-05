@@ -1,0 +1,141 @@
+<header class="fixed-top header">
+  <div class="navigation w-100">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light p-0">
+        <a class="navbar-brand" routerLink=""
+          ><img src="assets/images/logo.png" alt="logo"
+        /></a>
+        <button
+          class="navbar-toggler rounded-0"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navigation"
+          aria-controls="navigation"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navigation">
+          <ul class="navbar-nav ml-auto text-center" >
+            <li class="nav-item active" *ngIf="(isLoggedIn() && (user.role=='student' || user.role=='parent' )) || !isLoggedIn()">
+              <a class="nav-link" routerLink="" >Home</a>
+            </li>
+           
+            <li class="nav-item active" *ngIf="isLoggedIn() && user.role=='teacher'">
+              <a class="nav-link" routerLink="addCourse" >Add Course</a>
+            </li>
+            <li class="nav-item active" *ngIf="isLoggedIn() && user.role=='teacher'">
+              <a class="nav-link" routerLink="coursesTeacher" >My Courses</a>
+            </li>
+            <li class="nav-item active" *ngIf="isLoggedIn() && user.role=='student'">
+              <a class="nav-link" routerLink="CoursesStudent" >My Courses</a>
+            </li>
+             <li class="nav-item active" *ngIf="isLoggedIn() && user.role=='student'">
+              <a class="nav-link" routerLink="teachersStudent" >My Teachers</a>
+            </li>
+            <li class="nav-item active" *ngIf="isLoggedIn() && user.role=='teacher'">
+              <a class="nav-link" routerLink="studentsTeacher" >My Students</a>
+            </li>
+             <li class="nav-item active" *ngIf="isLoggedIn() && user.role=='teacher'">
+              <a class="nav-link" routerLink="evaluationsTeacher" >My Evaluations</a>
+            </li>
+            <li class="nav-item @@courses" *ngIf="(isLoggedIn() && user.role=='parent') || !isLoggedIn()">
+              <a class="nav-link" routerLink="allCourses">Courses</a>
+            </li>
+           
+            <li class="nav-item @@blog" *ngIf="(isLoggedIn() && user.role=='parent') || !isLoggedIn()">
+              <a class="nav-link" routerLink="allTeachers">Teachers</a>
+            </li>
+           
+            <li class="nav-item dropdown view" *ngIf="!isLoggedIn()">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Signup
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+                <a
+                  class="dropdown-item"
+                  routerLink="signupTeacher"
+                  
+                  >Teacher</a
+                >
+
+                <a
+                  class="dropdown-item"
+                  routerLink="signupStudent"
+                  
+                  >Student</a
+                >
+
+                <a
+                  class="dropdown-item"
+                  routerLink="signupParent"
+                  
+                  >Parent</a
+                >
+                
+                <a
+                  class="dropdown-item"
+                  routerLink="signupAdmin"
+                 
+                  >Admin</a
+                >
+              </div>
+            </li>
+            <li class="nav-item @@contact" *ngIf="isLoggedIn() && user.role == 'admin'">
+              <a
+                class="nav-link"
+                routerLink="admin"
+               
+                >Dashboard</a
+              >
+            </li>
+            <li class="nav-item @@contact" *ngIf="isLoggedIn() && user.role == 'admin'">
+              <a
+                class="nav-link"
+                routerLink="addNews"
+               
+                >Add News</a
+              >
+            </li>
+            <li class="nav-item @@contact" *ngIf="!isLoggedIn()">
+              <a
+                class="nav-link"
+                routerLink="login"
+               
+                >Login</a
+              >
+            </li>
+            <li class="nav-item @@contact" *ngIf="isLoggedIn() && user.role == 'parent'">
+              <a
+                class="nav-link"
+                routerLink="searchEvaluation"
+                >Search Review</a
+              >
+            </li>
+            <li class="nav-item @@contact" *ngIf="isLoggedIn()">
+              <a
+                class="nav-link"
+                routerLink=""
+               (click)="logOut()"
+                >Log Out</a
+              >
+            </li>
+           
+          </ul>
+        
+
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>

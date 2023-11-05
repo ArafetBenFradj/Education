@@ -1,0 +1,293 @@
+<div class="modal fade" id="editTeacherModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content rounded-0 border-0 p-4">
+            <div class="modal-header border-0">
+                <h3>{{titleTeacher}}</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="login">
+                    <form [formGroup]="signupForm"  enctype="multipart/form-data" class="row">
+                        <div class="col-12">
+                          <input
+                            type="text"
+                            class="form-control mb-3"
+                            [(ngModel)]="teacher.firstName"
+                            formControlName="firstName"
+                            name="signupFirstName"
+                            placeholder="First Name"
+                          />
+                        </div>
+                        <div
+                          class="col-sm-12"
+                          style="color: red;"
+                          *ngIf="
+                            signupForm.controls['firstName'].invalid &&
+                            (signupForm.controls['firstName'].dirty ||
+                              signupForm.controls['firstName'].touched)
+                          "
+                        >
+                          <div
+                            *ngIf="
+                              signupForm.controls['firstName'].errors.required
+                            "
+                          >
+                            First Name  is required
+                          </div>
+                          <div
+                            *ngIf="
+                              signupForm.controls['firstName'].errors
+                                .minlength
+                            "
+                          >
+                            First Name  should have at least 3 carac
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <input
+                            type="text"
+                            class="form-control mb-3"
+                            [(ngModel)]="teacher.lastName"
+                            formControlName="lastName"
+                            name="signupLastName"
+                            placeholder="Last Name"
+                          />
+                        </div>
+                        <div
+                          class="col-sm-12"
+                          style="color: red;"
+                          *ngIf="
+                            signupForm.controls['lastName'].invalid &&
+                            (signupForm.controls['lastName'].dirty ||
+                              signupForm.controls['lastName'].touched)
+                          "
+                        >
+                          <div
+                            *ngIf="
+                              signupForm.controls['lastName'].errors.required
+                            "
+                          >
+                            Last Name  is required
+                          </div>
+                          <div
+                            *ngIf="
+                              signupForm.controls['lastName'].errors.minlength
+                            "
+                          >
+                            Last Name  should have at least 4 carac
+                          </div>
+                        </div>
+            
+                        <div class="col-12">
+                          <input
+                            type="text"
+                            class="form-control mb-3"
+                            [(ngModel)]="teacher.address"
+                            formControlName="address"
+                            name="signupAdress"
+                            placeholder="Your Address"
+                          />
+                        </div>
+                        <div
+                          class="col-sm-12"
+                          style="color: red;"
+                          *ngIf="
+                            signupForm.controls['address'].invalid &&
+                            (signupForm.controls['address'].dirty ||
+                              signupForm.controls['address'].touched)
+                          "
+                        >
+                          <div
+                            *ngIf="
+                              signupForm.controls['address'].errors.required
+                            "
+                          >
+                            Address is required
+                          </div>
+                          <div
+                            *ngIf="
+                              signupForm.controls['address'].errors.minlength
+                            "
+                          >
+                            Address should have at least 5 characters
+                          </div>
+                          <div
+                            *ngIf="
+                              signupForm.controls['address'].errors.maxlength
+                            "
+                          >
+                            Address should have at most 10 characters
+                          </div>
+                        </div>
+                        <div class="col-12">
+                            <input
+                              type="email"
+                              class="form-control mb-3"
+                              [(ngModel)]="teacher.email"
+                              formControlName="email"
+                              name="signupEmail"
+                              placeholder="Your Email"
+                            />
+                           
+                          </div>
+                          <div
+                          class="col-sm-12"
+                          style="color: red;"
+                          *ngIf="
+                            signupForm.controls['email'].invalid &&
+                            (signupForm.controls['email'].dirty ||
+                              signupForm.controls['email'].touched)
+                          "
+                        >
+                          <div
+                            *ngIf="
+                              signupForm.controls['email'].errors.required
+                            "
+                          >
+                            Email is required
+                          </div>
+                          <div
+                            *ngIf="
+                              signupForm.controls['email'].errors.email
+                            "
+                          >
+                          Please enter a valid email address
+                          </div>
+                        
+                        </div>
+                        <div class="col-12" >
+                            <input
+                              type="text"
+                              class="form-control mb-3"
+                              [(ngModel)]="teacher.speciality"
+                              formControlName="speciality"
+                              name="signupSpeciality"
+                              placeholder="Your Speciality"
+                            />
+                          </div>
+                          <div
+                            class="col-sm-12"
+                            style="color: red;"
+                            *ngIf="
+                              signupForm.controls['speciality'].invalid &&
+                              (signupForm.controls['speciality'].dirty ||
+                                signupForm.controls['speciality'].touched)
+                            "
+                          >
+                            <div
+                              *ngIf="
+                                signupForm.controls['speciality'].errors.required
+                              "
+                            >
+                              Speciality  is required
+                            </div>
+                            <div
+                              *ngIf="
+                                signupForm.controls['speciality'].errors.minlength
+                              "
+                            >
+                              Speciality  should have at least 5 characters
+                            </div>
+                            <div
+                              *ngIf="
+                                signupForm.controls['speciality'].errors.maxlength
+                              "
+                            >
+                              Speciality  should have at most 10 characters
+                            </div>
+                          </div>
+                        <div class="col-12">
+                          <input
+                            type="text"
+                            class="form-control mb-3"
+                            [(ngModel)]="teacher.tel"
+                            formControlName="tel"
+                            name="signupPhone"
+                            placeholder="Phone"
+                          />
+                        </div>
+                        <div
+                          class="col-sm-12"
+                          style="color: red;"
+                          *ngIf="
+                            signupForm.controls['tel'].invalid &&
+                            (signupForm.controls['tel'].dirty ||
+                              signupForm.controls['tel'].touched)
+                          "
+                        >
+                          <div
+                            *ngIf="signupForm.controls['tel'].errors.required"
+                          >
+                            Phone Number is required
+                          </div>
+                          <div
+                            *ngIf="signupForm.controls['tel'].errors.pattern"
+                          >
+                            Phone Number should have at least 8 number
+                          </div>
+                        </div>
+                       
+                        
+                         <div class="col-12" >
+                          <div  style="display: none;">
+                            <input
+                              type="file"
+                              class="form-control mb-3"
+                              name="img"
+                              #imgFilePicker
+                              (change)="onFileSelected($event, 'img')"
+            
+                            />
+                          </div>
+                          <div class="text-center">
+                            <div>
+                              <button type="button" (click)="imgFilePicker.click()" class="btn btn-success">Change Photo</button>
+                            </div>
+                           <div class="mt-4 mb-4"> 
+                            <img [src]="photoImagePreview" width="200px" *ngIf="photoImagePreview">
+                           </div>
+                          
+                          
+                          </div>
+                          
+                          
+                        </div>
+                        <div class="col-12" >
+                          <div  style="display: none;">
+                            <input
+                              type="file"
+                              name="img"
+                              class="form-control mb-3"
+                              #cvFilePicker
+                              (change)="onFileSelected($event, 'cv')"
+                            />
+                          </div>
+                          <div class="text-center" >
+                            <div>
+                              <button  type="button" (click)="cvFilePicker.click()" class="btn btn-warning">upload New CV</button>
+                            </div>
+                           <div class="mt-4 mb-4"> 
+                            <img [src]=" cvImagePreview" width="200px"  *ngIf="cvImagePreview">
+                           </div>
+                           
+                          </div>
+                        </div> 
+                        
+                        
+                        <div class="col-12">
+                          <button
+                            type="submit"
+                            class="btn btn-primary"
+                            (click)="editTeacher(teacher._id)"
+                          >
+                           Edit
+                          </button>
+                        </div>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
